@@ -59,7 +59,7 @@ export default Ember.Object.extend({
 
     return adapter.destroy(type, record).then(function() {
       this.records.remove(type, record);
-    });
+    }.bind(this));
   },
 
   save: function(type, record) {
