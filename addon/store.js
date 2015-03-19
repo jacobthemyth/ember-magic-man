@@ -10,25 +10,11 @@ export default Ember.Object.extend({
     var adapter = this.adapterFor(type);
     this._adapterHasMethod(adapter, 'find');
 
-    var cached = this.records.get(type, id);
-    if(cached) {
-
-      adapter.find(type, id).then(function(recordData) {
-        var record = this.createRecord(type, recordData);
-        this.records.set(type, id, record);
-      }.bind(this));
-
-      return Ember.RSVP.resolve(cached);
-
-    } else {
-
-      return adapter.find(type, id).then(function(recordData) {
-        var record = this.createRecord(type, recordData);
-        this.records.set(type, id, record);
-        return record;
-      }.bind(this));
-
-    }
+    return adapter.find(type, id).then(function(recordData) {
+      var record = this.createRecord(type, recordData);
+      this.records.set(type, id, record);
+      return record;
+    }.bind(this));
   },
 
   findAll: function(type){
