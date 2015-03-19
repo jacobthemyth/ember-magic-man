@@ -12,8 +12,7 @@ export default Ember.Object.extend({
 
     return adapter.find(type, id).then(function(recordData) {
       var record = this.createRecord(type, recordData);
-      this.records.set(type, id, record);
-      return record;
+      return this.records.set(type, id, record);
     }.bind(this));
   },
 
