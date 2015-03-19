@@ -72,7 +72,9 @@ export default Ember.Object.extend({
     }.bind(this));
   },
 
-  push: function(type, record) {
+  push: function(type, data) {
+    var factory = this.modelFor(type);
+    var record = data instanceof(factory) ? data : factory.create(data);
     return this.records.set(type, record.id, record);
   },
 
