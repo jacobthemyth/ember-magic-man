@@ -18,7 +18,7 @@ export default Ember.Object.extend({
 
   findAll: function(type){
     var adapter = this.adapterFor(type);
-    this._adapterHasMethod(adapter, 'find');
+    this._adapterHasMethod(adapter, 'findAll');
 
     return adapter.findAll(type).then(function(recordsData) {
       this.records.clear(type);
@@ -33,14 +33,14 @@ export default Ember.Object.extend({
 
   findQuery: function(type, query){
     var adapter = this.adapterFor(type);
-    this._adapterHasMethod(adapter, 'find');
+    this._adapterHasMethod(adapter, 'findQuery');
 
     return adapter.findQuery(type, query);
   },
 
   destroy: function(type, record) {
     var adapter = this.adapterFor(type);
-    this._adapterHasMethod(adapter, 'find');
+    this._adapterHasMethod(adapter, 'destroy');
 
     return adapter.destroy(type, record).then(function() {
       this.records.remove(type, record);
@@ -49,7 +49,7 @@ export default Ember.Object.extend({
 
   save: function(type, record) {
     var adapter = this.adapterFor(type);
-    this._adapterHasMethod(adapter, 'find');
+    this._adapterHasMethod(adapter, 'save');
 
     return adapter.save(type, record).then(function(recordData) {
       var record = this.createRecord(type, recordData);
