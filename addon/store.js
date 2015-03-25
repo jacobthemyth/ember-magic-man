@@ -38,7 +38,7 @@ export default Ember.Object.extend({
     return adapter.findQuery(type, query).then(function(recordsData) {
       return recordsData.map(function(recordData) {
         return this.createRecord(type, recordData);
-      });
+      }.bind(this));
     }.bind(this));
   },
 
