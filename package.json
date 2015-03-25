@@ -1,6 +1,6 @@
 {
   "name": "ember-magic-man",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A lightweight persistence library for Ember.js",
   "directories": {
     "doc": "doc",
