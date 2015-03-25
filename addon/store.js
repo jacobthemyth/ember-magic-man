@@ -35,7 +35,11 @@ export default Ember.Object.extend({
     var adapter = this.adapterFor(type);
     this._adapterHasMethod(adapter, 'findQuery');
 
-    return adapter.findQuery(type, query);
+    return adapter.findQuery(type, query).then(function(recordsData) {
+      return recordsData.map(function(recordData) {
+        return this.createRecord(type, recordData);
+      });
+    }.bind(this));
   },
 
   destroy: function(type, record) {
